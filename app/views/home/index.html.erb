@@ -14,37 +14,173 @@
   </header>
 
   <main>
-    <section class="bg-pink-600 px-6 py-24 text-center text-white">
-  <div class="mx-auto max-w-4xl">
 
-    <p class="mb-4 text-lg font-semibold uppercase tracking-[0.3em]">
-      Since 1978
-    </p>
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-pecs-black px-6 py-32 text-center text-white">
 
-    <h2 class="text-6xl font-black tracking-tight md:text-8xl">
-      Pecs Bar
-    </h2>
+      <!-- Subtle neon glow -->
+      <div class="absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-pecs-green opacity-10 blur-3xl"></div>
 
-    <p class="mx-auto mt-6 max-w-2xl text-xl md:text-2xl">
-      Your friendly neighborhood bar for good drinks, special events, 
-      and good times. Best drinks prices in town, and never a cover charge!
-    </p>
+      <!-- Neon bar outline -->
+      <div class="absolute left-1/2 top-0 h-1 w-24 -translate-x-1/2 rounded-full bg-pecs-green"></div>
 
-    <div class="mt-10">
-      <%= link_to "See What's Happening", "#",
-          class: "inline-block rounded-full bg-white px-8 py-4 font-bold text-pink-600 shadow-lg transition hover:scale-105" %>
-    </div>
+      <div class="relative mx-auto max-w-5xl">
 
-  </div>
-</section>
+        <h2 class="text-6xl font-black uppercase tracking-tight text-pecs-green md:text-8xl">
+          Pecs Bar
+        </h2>
 
-    <section>
-      <h2>Open Today</h2>
-      <p>Hours coming soon</p>
+        <p class="mx-auto mt-6 max-w-2xl text-lg text-white md:text-2xl">
+          Your friendly neighborhood bar for good drinks,
+          good people and good times.
+        </p>
 
-      <h2>Today's Specials</h2>
-      <p>Specials coming soon</p>
+        <div class="mt-10">
+          <%= link_to "See What's Happening", "#",
+              class: "inline-block rounded-full bg-pecs-green px-8 py-4 text-lg font-bold text-pecs-black shadow-lg transition duration-300 hover:scale-105" %>
+        </div>
+
+      </div>
+
+    <!--What's Happening Section-->
     </section>
+
+    <section class="bg-pecs-gray px-6 py-20">
+
+      <div class="mx-auto max-w-6xl">
+
+        <div class="mb-12 text-center">
+          <p class="text-sm font-bold uppercase tracking-[0.3em] text-pecs-green">
+            What's Happening
+          </p>
+
+          <h2 class="mt-3 text-4xl font-black uppercase text-white md:text-5xl">
+            At Pecs Bar
+          </h2>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-3">
+
+          <!-- Today's Hours -->
+          <div class="rounded-2xl border border-white/10 bg-pecs-black p-8">
+            <p class="text-sm font-bold uppercase tracking-widest text-pecs-green">
+              Today
+            </p>
+
+            <h3 class="mt-2 text-2xl font-black text-white">
+              Open Today
+            </h3>
+
+            <p class="mt-4 text-3xl font-bold text-white">
+              12:00 PM – 12:00 AM
+            </p>
+
+            <p class="mt-3 text-pecs-light-gray">
+              Come grab a drink and hang out with the neighborhood.
+            </p>
+          </div>
+
+          <!-- Today's Special -->
+          <div class="rounded-2xl border border-white/10 bg-pecs-black p-8">
+            <p class="text-sm font-bold uppercase tracking-widest text-pecs-green">
+              Today's Special
+            </p>
+
+            <h3 class="mt-2 text-2xl font-black text-white">
+              Happy Hour
+            </h3>
+
+            <p class="mt-4 text-xl font-bold text-white">
+              Great drinks. Great prices.
+            </p>
+
+            <p class="mt-3 text-pecs-light-gray">
+              Check back for today's specials and bar happenings.
+            </p>
+          </div>
+
+          <!-- Upcoming Event -->
+          <div class="rounded-2xl border border-white/10 bg-pecs-black p-8">
+            <p class="text-sm font-bold uppercase tracking-widest text-pecs-green">
+              Coming Up
+            </p>
+
+            <h3 class="mt-2 text-2xl font-black text-white">
+              Upcoming Event
+            </h3>
+
+            <p class="mt-4 text-xl font-bold text-white">
+              Events Coming Soon
+            </p>
+
+            <p class="mt-3 text-pecs-light-gray">
+              Check out our events calendar for what's happening at Pecs.
+            </p>
+
+            <%= link_to "View Events", "#",
+                class: "mt-6 inline-block font-bold text-pecs-green transition hover:underline" %>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!--About Section-->
+    <section class="bg-pecs-black px-6 py-20">
+
+      <div class="mx-auto max-w-6xl">
+
+        <div class="grid items-center gap-12 md:grid-cols-2">
+
+          <!-- Image Placeholder -->
+          <div class="flex aspect-[4/3] items-center justify-center rounded-2xl border border-pecs-green/30 bg-pecs-gray">
+            <div class="text-center">
+              <p class="text-5xl">🍻</p>
+              <p class="mt-4 font-bold uppercase tracking-widest text-pecs-light-gray">
+                Pecs Bar
+              </p>
+              <p class="mt-1 text-sm text-pecs-light-gray">
+                Photo coming soon
+              </p>
+            </div>
+          </div>
+
+          <!-- About Content -->
+          <div>
+
+            <p class="text-sm font-bold uppercase tracking-[0.3em] text-pecs-green">
+              Since 1978
+            </p>
+
+            <h2 class="mt-3 text-4xl font-black uppercase text-white md:text-5xl">
+              More Than Just A Bar
+            </h2>
+
+            <p class="mt-6 text-lg leading-8 text-pecs-light-gray">
+              Pecs Bar has been a neighborhood gathering place since 1978.
+              A place to grab a drink, meet up with friends, catch a game,
+              enjoy an event, or simply hang out and be yourself.
+            </p>
+
+            <p class="mt-4 text-lg leading-8 text-pecs-light-gray">
+              We're proud to be part of the neighborhood and the community
+              that has supported Pecs for generations.
+            </p>
+
+            <%= link_to "Learn More About Pecs",
+                "#",
+                class: "mt-8 inline-block rounded-full border-2 border-pecs-green px-6 py-3 font-bold text-pecs-green transition duration-300 hover:bg-pecs-green hover:text-pecs-black" %>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
   </main>
 
   <footer>

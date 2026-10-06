@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+@theme {
+  --color-pecs-green: #39ff14;
+  --color-pecs-black: #0a0a0a;
+  --color-pecs-gray: #2a2a2a;
+  --color-pecs-light-gray: #b3b3b3;
+}
