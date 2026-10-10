@@ -1,0 +1,195 @@
+<div class="min-h-screen bg-pecs-black text-white">
+
+  <!-- Page Header -->
+  <section class="border-b border-pecs-green/20 px-6 py-20 text-center">
+
+    <p class="text-sm font-bold uppercase tracking-[0.3em] text-pecs-green">
+      Pecs Bar
+    </p>
+
+    <h1 class="mt-3 text-5xl font-black uppercase md:text-7xl">
+      Events
+    </h1>
+
+    <p class="mx-auto mt-6 max-w-2xl text-lg text-pecs-light-gray">
+      There's always something happening at Pecs.
+      Check out our upcoming events and special nights.
+    </p>
+
+  </section>
+
+
+  <!-- Calendar Section -->
+  <section class="px-6 py-20">
+
+    <div class="mx-auto max-w-6xl">
+
+      <!-- Calendar Header -->
+      <div class="mb-8 flex items-center justify-between">
+
+        <div>
+          <p class="text-sm font-bold uppercase tracking-widest text-pecs-green">
+            Event Calendar
+          </p>
+
+          <h2 class="mt-2 text-3xl font-black uppercase">
+            <%= @current_month.strftime("%B %Y") %>
+          </h2>
+        </div>
+
+        <div class="flex gap-2">
+          <%= link_to events_path(month: @previous_month.strftime("%Y-%m")),
+              class: "rounded-lg border border-white/10 bg-pecs-gray px-4 py-2 font-bold hover:border-pecs-green hover:text-pecs-green",
+              aria: { label: "Previous month" } do %>
+            &larr;
+          <% end %>
+
+          <%= link_to events_path(month: @next_month.strftime("%Y-%m")),
+              class: "rounded-lg border border-white/10 bg-pecs-gray px-4 py-2 font-bold hover:border-pecs-green hover:text-pecs-green",
+              aria: { label: "Next month" } do %>
+            &rarr;
+          <% end %>
+        </div>
+
+      </div>
+
+
+      <!-- Calendar -->
+      <div class="overflow-hidden rounded-2xl border border-white/10 bg-pecs-gray">
+
+        <!-- Days of Week -->
+        <div class="grid grid-cols-7 border-b border-white/10">
+
+          <div class="p-3 text-center text-xs font-bold uppercase text-pecs-light-gray">
+            Sun
+          </div>
+
+          <div class="p-3 text-center text-xs font-bold uppercase text-pecs-light-gray">
+            Mon
+          </div>
+
+          <div class="p-3 text-center text-xs font-bold uppercase text-pecs-light-gray">
+            Tue
+          </div>
+
+          <div class="p-3 text-center text-xs font-bold uppercase text-pecs-light-gray">
+            Wed
+          </div>
+
+          <div class="p-3 text-center text-xs font-bold uppercase text-pecs-light-gray">
+            Thu
+          </div>
+
+          <div class="p-3 text-center text-xs font-bold uppercase text-pecs-light-gray">
+            Fri
+          </div>
+
+          <div class="p-3 text-center text-xs font-bold uppercase text-pecs-light-gray">
+            Sat
+          </div>
+
+        </div>
+
+
+        <!-- Calendar Days -->
+        <div class="grid grid-cols-7">
+
+          <% @calendar_days.each do |day| %>
+            <% day_events = @events_by_date.fetch(day, []) %>
+            <% has_event = day_events.any? %>
+            <% current_month = day.month == @current_month.month %>
+
+            <div class="min-h-28 border-b border-r border-white/10 p-3 transition hover:bg-pecs-gray
+                        <%= current_month ? 'bg-pecs-black' : 'bg-pecs-black/50' %>
+                        <%= 'ring-1 ring-inset ring-pecs-green/60' if has_event %>">
+
+              <span class="inline-flex h-7 w-7 items-center justify-center rounded-full text-sm font-bold
+                          <%= has_event ? 'bg-pecs-green text-pecs-black' : (current_month ? 'text-white' : 'text-pecs-light-gray/50') %>">
+                <%= day.day %>
+              </span>
+
+              <% day_events.each do |event| %>
+                <%= link_to event_path(event),
+                    class: "mt-2 block rounded-md bg-pecs-green/10 px-2 py-1 text-xs font-bold text-pecs-green transition hover:bg-pecs-green hover:text-pecs-black",
+                    title: event.title do %>
+                  <%= event.title %>
+                <% end %>
+              <% end %>
+
+            </div>
+          <% end %>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- Upcoming Events -->
+  <section class="bg-pecs-gray px-6 py-20">
+
+    <div class="mx-auto max-w-6xl">
+
+      <div class="mb-12 text-center">
+
+        <p class="text-sm font-bold uppercase tracking-[0.3em] text-pecs-green">
+          Don't Miss Out
+        </p>
+
+        <h2 class="mt-3 text-4xl font-black uppercase md:text-5xl">
+          Upcoming Events
+        </h2>
+
+      </div>
+
+
+      <div class="grid gap-6 md:grid-cols-3">
+
+        <% @events.each do |event| %>
+
+          <div class="rounded-2xl border border-white/10 bg-pecs-black p-6">
+
+            <p class="text-sm font-bold uppercase tracking-widest text-pecs-green">
+              <%= event.event_date.strftime("%A • %B %-d, %Y") %>
+            </p>
+
+            <h3 class="mt-3 text-2xl font-black">
+              <%= link_to event.title, event_path(event),
+                  class: "transition hover:text-pecs-green" %>
+            </h3>
+
+            <p class="mt-4 text-pecs-light-gray">
+              <%= event.description %>
+            </p>
+
+            <p class="mt-5 font-bold text-white">
+              <%= event.start_time.strftime("%-I:%M %p") %>
+              <% if event.end_time.present? %>
+                – <%= event.end_time.strftime("%-I:%M %p") %>
+              <% end %>
+            </p>
+
+          </div>
+
+        <% end %>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- Back Home -->
+  <section class="bg-pecs-black px-6 py-16 text-center">
+
+    <%= link_to "← Back to Home",
+        root_path,
+        class: "inline-block rounded-full border-2 border-pecs-green px-6 py-3 font-bold text-pecs-green transition duration-300 hover:bg-pecs-green hover:text-pecs-black" %>
+
+  </section>
+
+</div>
