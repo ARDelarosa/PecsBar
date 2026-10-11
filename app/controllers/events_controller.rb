@@ -21,4 +21,21 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
   end
+
+  def update
+    @event = Event.find(params[:id])
+
+    if @event.update(event_params)
+      redirect_to event_path(@event), notice: "Event updated successfully."
+    else
+      render :show, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def event_params
+    params.require(:event).permit(:title, :description, :event_date, :start_time, :end_time, :flyer)
+  end
+
 end
