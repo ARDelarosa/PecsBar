@@ -18,6 +18,21 @@ class EventsController < ApplicationController
     @events_by_date = @events.group_by(&:event_date)
   end
 
+  def new
+    @event = Event.new
+  end
+
+  
+  def create
+    @event = Event.new(event_params)
+
+    if @event.save
+      redirect_to event_path(@event), notice: "Event created successfully."
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   def show
     @event = Event.find(params[:id])
   end
