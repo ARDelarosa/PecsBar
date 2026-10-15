@@ -37,6 +37,10 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def edit
+    @event = Event.find(params[:id])
+  end
+
   def update
     @event = Event.find(params[:id])
 
@@ -45,6 +49,12 @@ class EventsController < ApplicationController
     else
       render :show, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+    redirect_to events_path, notice: "Event deleted successfully."
   end
 
   private

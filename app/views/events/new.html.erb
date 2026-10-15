@@ -19,50 +19,7 @@
         Add an event to the Pecs Bar calendar.
       </p>
 
-      <%= form_with model: @event, class: "mt-8 space-y-6" do |form| %>
-
-        <div>
-          <%= form.label :title, class: "mb-2 block font-bold" %>
-          <%= form.text_field :title, required: true,
-              class: "w-full rounded-lg border border-white/10 bg-pecs-black px-4 py-3 text-white focus:border-pecs-green focus:outline-none" %>
-        </div>
-
-        <div>
-          <%= form.label :description, class: "mb-2 block font-bold" %>
-          <%= form.text_area :description, rows: 5,
-              class: "w-full rounded-lg border border-white/10 bg-pecs-black px-4 py-3 text-white focus:border-pecs-green focus:outline-none" %>
-        </div>
-
-        <div>
-          <%= form.label :event_date, "Event Date", class: "mb-2 block font-bold" %>
-          <%= form.date_field :event_date, required: true,
-              class: "w-full rounded-lg border border-white/10 bg-pecs-black px-4 py-3 text-white focus:border-pecs-green focus:outline-none" %>
-        </div>
-
-        <div class="grid gap-6 sm:grid-cols-2">
-          <div>
-            <%= form.label :start_time, "Start Time", class: "mb-2 block font-bold" %>
-            <%= form.time_field :start_time, required: true,
-                class: "w-full rounded-lg border border-white/10 bg-pecs-black px-4 py-3 text-white focus:border-pecs-green focus:outline-none" %>
-          </div>
-
-          <div>
-            <%= form.label :end_time, "End Time", class: "mb-2 block font-bold" %>
-            <%= form.time_field :end_time,
-                class: "w-full rounded-lg border border-white/10 bg-pecs-black px-4 py-3 text-white focus:border-pecs-green focus:outline-none" %>
-          </div>
-        </div>
-
-        <div>
-          <%= form.label :flyer, "Event Flyer (optional)", class: "mb-2 block font-bold" %>
-          <%= form.file_field :flyer, accept: "image/*",
-              class: "block w-full text-sm text-pecs-light-gray file:mr-4 file:rounded-full file:border-0 file:bg-pecs-green file:px-4 file:py-2 file:font-bold file:text-pecs-black" %>
-        </div>
-
-        <%= form.submit "Create Event",
-            class: "rounded-full bg-pecs-green px-8 py-4 font-bold text-pecs-black transition hover:bg-white" %>
-
-      <% end %>
+        <%= render "form" %>
 
     </div>
   </div>

@@ -4,6 +4,19 @@
     <%= link_to "← Back to Events", events_path,
         class: "font-bold text-pecs-green transition hover:underline" %>
 
+    <%= link_to "Edit Event",
+    edit_event_path(@event),
+    class: "ml-4 inline-block rounded-full border border-pecs-green px-4 py-2 font-bold text-pecs-green transition hover:bg-pecs-green hover:text-pecs-black" %>
+
+    <%= button_to "Delete Event",
+    event_path(@event),
+    method: :delete,
+    form: {
+      data: {
+        turbo_confirm: "Are you sure you want to delete this event?"
+      }
+    },
+    class: "ml-4 inline-block rounded-full border border-red-500 px-4 py-2 font-bold text-red-500 transition hover:bg-red-500 hover:text-white" %>
     
     <% if notice.present? %>
     <div class="mt-6 rounded-lg border border-pecs-green/30 bg-pecs-green/10 px-4 py-3 font-semibold text-pecs-green"
