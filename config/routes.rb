@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admins
   root "home#index"
 
   resources :events, only: [:index, :show, :new, :create, :edit, :update, :destroy]

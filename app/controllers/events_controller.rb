@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :authenticate_admin!,
+    except: [:index, :show]
   def index
     @events = Event.order(event_date: :asc)
 
