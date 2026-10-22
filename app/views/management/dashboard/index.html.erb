@@ -1,0 +1,111 @@
+
+<div class="min-h-screen bg-pecs-black px-4 py-10 text-white sm:px-8 lg:px-12">
+  <div class="mx-auto max-w-6xl">
+
+    <%# Header %>
+    <header class="flex flex-col gap-5 border-b border-pecs-green/30 pb-8 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <p class="text-sm font-bold uppercase tracking-[0.3em] text-pecs-green">
+          Pecs Bar
+        </p>
+
+        <h1 class="mt-2 text-3xl font-black sm:text-4xl">
+          Admin <span class="text-pecs-green">Dashboard</span>
+        </h1>
+
+        <p class="mt-2 text-pecs-light-gray">
+          Welcome back! Manage your website from here.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-3">
+        <%= link_to "View Website", root_path,
+            class: "rounded-full border border-white/20 px-5 py-3 text-sm font-bold transition hover:border-pecs-green hover:text-pecs-green" %>
+
+        <%= button_to "Log Out", destroy_admin_session_path,
+            method: :delete,
+            class: "rounded-full bg-pecs-green px-5 py-3 text-sm font-black text-pecs-black transition hover:bg-white" %>
+      </div>
+    </header>
+
+    <%# Dashboard introduction %>
+    <section class="py-10">
+      <p class="text-sm font-bold uppercase tracking-widest text-pecs-green">
+        Website Management
+      </p>
+
+      <h2 class="mt-2 text-2xl font-extrabold">
+        What would you like to manage?
+      </h2>
+
+      <p class="mt-3 max-w-2xl text-pecs-light-gray">
+        Keep Pecs Bar's events and website content up to date.
+      </p>
+    </section>
+
+    <%# Management cards %>
+    <section class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+      <%# Events card %>
+      <div class="rounded-2xl border border-pecs-green/30 bg-pecs-gray p-6 transition hover:border-pecs-green hover:shadow-[0_0_25px_rgba(57,255,20,0.10)]">
+        <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-pecs-green/10 text-2xl">
+          📅
+        </div>
+
+        <h3 class="text-xl font-extrabold">Events</h3>
+
+        <p class="mt-3 text-sm leading-6 text-pecs-light-gray">
+          Create events, update dates and descriptions, upload flyers, and remove outdated events.
+        </p>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          <%= link_to "View Events", events_path,
+              class: "rounded-full border border-pecs-green px-4 py-2 text-sm font-bold text-pecs-green transition hover:bg-pecs-green hover:text-pecs-black" %>
+
+          <%= link_to "Create Event", new_event_path,
+              class: "rounded-full bg-pecs-green px-4 py-2 text-sm font-black text-pecs-black transition hover:bg-white" %>
+        </div>
+      </div>
+
+      <%# Specials card - coming later %>
+      <div class="rounded-2xl border border-white/10 bg-pecs-gray p-6 opacity-80">
+        <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 text-2xl">
+          🍹
+        </div>
+
+        <h3 class="text-xl font-extrabold">Daily Specials</h3>
+
+        <p class="mt-3 text-sm leading-6 text-pecs-light-gray">
+          Manage happy hour, drink specials, and daily promotions.
+        </p>
+
+        <p class="mt-6 text-sm font-bold text-pecs-green">
+          Coming soon
+        </p>
+      </div>
+
+      <%# Gallery card - coming later %>
+      <div class="rounded-2xl border border-white/10 bg-pecs-gray p-6 opacity-80">
+        <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 text-2xl">
+          📸
+        </div>
+
+        <h3 class="text-xl font-extrabold">Gallery</h3>
+
+        <p class="mt-3 text-sm leading-6 text-pecs-light-gray">
+          Organize photos of events, the bar, the patio, and the community.
+        </p>
+
+        <p class="mt-6 text-sm font-bold text-pecs-green">
+          Coming soon
+        </p>
+      </div>
+
+    </section>
+
+    <footer class="mt-12 border-t border-white/10 pt-6 text-center text-sm text-pecs-light-gray">
+      Pecs Bar Admin Portal
+    </footer>
+
+  </div>
+</div>

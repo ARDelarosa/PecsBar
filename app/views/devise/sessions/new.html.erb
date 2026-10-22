@@ -1,0 +1,93 @@
+
+<div class="min-h-screen bg-pecs-black px-4 py-12 text-white sm:py-20">
+  <div class="mx-auto max-w-md">
+
+    <%# Back to the public website %>
+    <div class="mb-8 text-center">
+      <%= link_to root_path, class: "text-sm font-semibold text-pecs-light-gray transition hover:text-pecs-green" do %>
+        &larr; Back to Pecs Bar
+      <% end %>
+    </div>
+
+    <%# Login card %>
+    <div class="rounded-2xl border border-pecs-green/30 bg-pecs-gray p-6 shadow-[0_0_35px_rgba(57,255,20,0.10)] sm:p-8">
+
+      <div class="mb-8 text-center">
+        <p class="mb-3 text-sm font-bold uppercase tracking-[0.3em] text-pecs-green">
+          Pecs Bar
+        </p>
+
+        <h1 class="text-3xl font-black tracking-tight sm:text-4xl">
+          Admin <span class="text-pecs-green">Login</span>
+        </h1>
+
+        <p class="mt-3 text-sm text-pecs-light-gray">
+          Sign in to manage events and website content.
+        </p>
+      </div>
+
+      <%# Feedback messages %>
+      <% if alert.present? %>
+        <div role="alert" class="mb-5 rounded-lg border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+          <%= alert %>
+        </div>
+      <% end %>
+
+      <% if notice.present? %>
+        <div role="status" class="mb-5 rounded-lg border border-pecs-green/30 bg-pecs-green/10 px-4 py-3 text-sm text-pecs-green">
+          <%= notice %>
+        </div>
+      <% end %>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-6" }) do |f| %>
+
+        <div>
+          <%= f.label :email, class: "mb-2 block text-sm font-semibold text-white" %>
+
+          <%= f.email_field :email,
+              autofocus: true,
+              autocomplete: "email",
+              placeholder: "admin@example.com",
+              class: "w-full rounded-lg border border-white/15 bg-pecs-black px-4 py-3 text-white outline-none transition placeholder:text-pecs-light-gray/60 focus:border-pecs-green focus:ring-2 focus:ring-pecs-green/30" %>
+        </div>
+
+        <div>
+          <%= f.label :password, class: "mb-2 block text-sm font-semibold text-white" %>
+
+          <%= f.password_field :password,
+              autocomplete: "current-password",
+              placeholder: "Enter your password",
+              class: "w-full rounded-lg border border-white/15 bg-pecs-black px-4 py-3 text-white outline-none transition placeholder:text-pecs-light-gray/60 focus:border-pecs-green focus:ring-2 focus:ring-pecs-green/30" %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="flex items-center gap-3">
+            <%= f.check_box :remember_me,
+                class: "h-4 w-4 rounded border-white/20 accent-pecs-green focus:ring-pecs-green" %>
+
+            <%= f.label :remember_me, "Remember me",
+                class: "text-sm text-pecs-light-gray" %>
+          </div>
+        <% end %>
+
+        <div>
+          <%= f.submit "Sign In",
+              class: "w-full cursor-pointer rounded-full bg-pecs-green px-6 py-3 font-black text-pecs-black shadow-[0_0_20px_rgba(57,255,20,0.20)] transition hover:bg-white hover:shadow-[0_0_25px_rgba(57,255,20,0.35)]" %>
+        </div>
+
+      <% end %>
+
+      <div class="mt-6 border-t border-white/10 pt-5 text-center">
+        <p class="text-xs text-pecs-light-gray">
+          Authorized administrators only.
+        </p>
+      </div>
+
+    </div>
+
+    <p class="mt-6 text-center text-xs text-pecs-light-gray/70">
+      Pecs Bar &bull; Admin Portal
+    </p>
+
+  </div>
+</div>

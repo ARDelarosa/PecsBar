@@ -1,0 +1,126 @@
+
+<div class="min-h-screen bg-pecs-black px-4 py-10 text-white sm:px-8 lg:px-12">
+  <div class="mx-auto max-w-7xl">
+
+    <%# Admin navigation %>
+    <header class="flex flex-col gap-5 border-b border-pecs-green/30 pb-8 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <%= link_to "← Admin Dashboard", management_root_path,
+            class: "text-sm font-semibold text-pecs-light-gray transition hover:text-pecs-green" %>
+
+        <h1 class="mt-4 text-3xl font-black sm:text-4xl">
+          Admin <span class="text-pecs-green">Calendar</span>
+        </h1>
+
+        <p class="mt-2 text-pecs-light-gray">
+          Manage Pecs Bar events from one place.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-3">
+        <%= link_to "All Events", management_events_path,
+            class: "rounded-full border border-white/20 px-5 py-3 text-sm font-bold transition hover:border-pecs-green hover:text-pecs-green" %>
+
+        <%= link_to "+ Create Event", new_event_path,
+            class: "rounded-full bg-pecs-green px-5 py-3 text-sm font-black text-pecs-black transition hover:bg-white" %>
+      </div>
+    </header>
+
+    <%# Calendar %>
+    <section class="mt-8 overflow-hidden rounded-2xl border border-pecs-green/25 bg-pecs-gray">
+
+      <div class="flex items-center justify-between gap-3 border-b border-white/10 p-4 sm:p-6">
+        <%= link_to "← Previous",
+            management_events_path(month: @previous_month.strftime("%Y-%m")),
+            class: "rounded-full border border-pecs-green/40 px-3 py-2 text-sm font-bold text-pecs-green transition hover:bg-pecs-green hover:text-pecs-black sm:px-5" %>
+
+        <h2 class="text-center text-xl font-black sm:text-2xl">
+          <%= @current_month.strftime("%B %Y") %>
+        </h2>
+
+        <%= link_to "Next →",
+            management_events_path(month: @next_month.strftime("%Y-%m")),
+            class: "rounded-full border border-pecs-green/40 px-3 py-2 text-sm font-bold text-pecs-green transition hover:bg-pecs-green hover:text-pecs-black sm:px-5" %>
+      </div>
+
+      <div class="grid grid-cols-7 border-b border-white/10 bg-pecs-black text-center">
+        <% %w[Sun Mon Tue Wed Thu Fri Sat].each do |weekday| %>
+          <div class="px-1 py-3 text-xs font-bold uppercase tracking-wide text-pecs-light-gray sm:text-sm">
+            <%= weekday %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="grid grid-cols-7">
+        <% @calendar_days.each do |day| %>
+          <% day_events = @events_by_date.fetch(day, []) %>
+          <% current_month_day = day.month == @current_month.month %>
+
+          <div class="min-h-24 border-b border-r border-white/10 p-1.5 sm:min-h-32 sm:p-3 <%= current_month_day ? 'bg-pecs-gray' : 'bg-pecs-black/60' %>">
+            <div class="flex justify-center sm:justify-start">
+              <span class="flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold sm:h-8 sm:w-8 sm:text-sm <%= day == Date.current ? 'bg-pecs-green text-pecs-black' : (current_month_day ? 'text-white' : 'text-pecs-light-gray/50') %>">
+                <%= day.day %>
+              </span>
+            </div>
+
+            <% day_events.each do |event| %>
+              <div class="mt-2">
+                <%= link_to event.title, edit_event_path(event),
+                    title: "Edit #{event.title}",
+                    class: "block rounded-md bg-pecs-green/10 px-1.5 py-1 text-[10px] font-bold leading-tight text-pecs-green transition hover:bg-pecs-green hover:text-pecs-black sm:px-2 sm:text-xs" %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </section>
+
+    <%# Upcoming event summary %>
+    <section class="mt-10">
+      <div class="mb-5 flex flex-wrap items-center justify-between gap-3">
+        <h2 class="text-2xl font-black">Upcoming Events</h2>
+
+        <%= link_to "Manage All Events →", management_events_path,
+            class: "text-sm font-bold text-pecs-green transition hover:underline" %>
+      </div>
+
+      <% upcoming_events = @events.select { |event| event.event_date >= Date.current }.first(5) %>
+
+      <% if upcoming_events.any? %>
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <% upcoming_events.each do |event| %>
+            <div class="rounded-xl border border-white/10 bg-pecs-gray p-5 transition hover:border-pecs-green/50">
+              <p class="text-sm font-bold text-pecs-green">
+                <%= event.event_date.strftime("%a, %b %-d, %Y") %>
+              </p>
+
+              <h3 class="mt-2 text-lg font-extrabold">
+                <%= event.title %>
+              </h3>
+
+              <p class="mt-2 text-sm text-pecs-light-gray">
+                <%= event.flyer.attached? ? "Flyer uploaded" : "No flyer uploaded" %>
+              </p>
+
+              <%= link_to "Edit Event →", edit_event_path(event),
+                  class: "mt-4 inline-block text-sm font-bold text-pecs-green transition hover:underline" %>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="rounded-xl border border-white/10 bg-pecs-gray p-8 text-center">
+          <p class="text-3xl">📅</p>
+          <h3 class="mt-3 text-lg font-bold">No upcoming events</h3>
+          <p class="mt-2 text-sm text-pecs-light-gray">
+            Create an event and it will appear on this calendar.
+          </p>
+        </div>
+      <% end %>
+    </section>
+
+    <footer class="mt-12 border-t border-white/10 pt-6 text-center text-sm text-pecs-light-gray">
+      Pecs Bar Admin Portal
+    </footer>
+
+  </div>
+</div>
