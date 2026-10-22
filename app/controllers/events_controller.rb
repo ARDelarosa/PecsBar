@@ -67,7 +67,18 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :description, :event_date, :start_time, :end_time, :flyer)
+    params.require(:event).permit(
+      :title,
+      :description,
+      :event_date,
+      :start_time,
+      :end_time,
+      :flyer
+    )
+  end
+
+  def admin_return_path
+    management_events_path if admin_signed_in? && params[:return_to] == "admin"
   end
 
 end

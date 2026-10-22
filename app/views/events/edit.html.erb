@@ -1,8 +1,9 @@
 <div class="min-h-screen bg-pecs-black px-6 py-16 text-white">
   <div class="mx-auto max-w-3xl">
 
-    <%= link_to "← Back to Event", event_path(@event),
-        class: "font-bold text-pecs-green transition hover:underline" %>
+    <%= link_to "← Back to Events",
+      (params[:return_to] == "admin" ? management_events_path : events_path),
+      class: "text-pecs-green hover:underline" %>
 
     <div class="mt-8 rounded-2xl border border-white/10 bg-pecs-gray p-8 md:p-12">
 

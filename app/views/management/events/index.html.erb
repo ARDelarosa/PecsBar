@@ -21,7 +21,7 @@
         <%= link_to "All Events", management_events_path,
             class: "rounded-full border border-white/20 px-5 py-3 text-sm font-bold transition hover:border-pecs-green hover:text-pecs-green" %>
 
-        <%= link_to "+ Create Event", new_event_path,
+        <%= link_to "+ Create Event", new_event_path(return_to: "admin"),
             class: "rounded-full bg-pecs-green px-5 py-3 text-sm font-black text-pecs-black transition hover:bg-white" %>
       </div>
     </header>
@@ -65,7 +65,7 @@
 
             <% day_events.each do |event| %>
               <div class="mt-2">
-                <%= link_to event.title, edit_event_path(event),
+                <%= link_to event.title, edit_event_path(event, return_to: "admin"),
                     title: "Edit #{event.title}",
                     class: "block rounded-md bg-pecs-green/10 px-1.5 py-1 text-[10px] font-bold leading-tight text-pecs-green transition hover:bg-pecs-green hover:text-pecs-black sm:px-2 sm:text-xs" %>
               </div>
@@ -102,7 +102,7 @@
                 <%= event.flyer.attached? ? "Flyer uploaded" : "No flyer uploaded" %>
               </p>
 
-              <%= link_to "Edit Event →", edit_event_path(event),
+              <%= link_to "Edit Event →", edit_event_path(event, return_to: "admin"),
                   class: "mt-4 inline-block text-sm font-bold text-pecs-green transition hover:underline" %>
             </div>
           <% end %>

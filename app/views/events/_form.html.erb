@@ -1,4 +1,5 @@
 <%= form_with model: @event, class: "mt-8 space-y-6" do |form| %>
+  <%= hidden_field_tag :return_to, params[:return_to] if params[:return_to].present? %>
 
         <div>
           <%= form.label :title, class: "mb-2 block font-bold" %>
