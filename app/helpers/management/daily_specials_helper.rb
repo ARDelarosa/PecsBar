@@ -1,0 +1,2 @@
+module Management::DailySpecialsHelper
+end

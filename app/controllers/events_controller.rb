@@ -78,7 +78,13 @@ class EventsController < ApplicationController
   end
 
   def admin_return_path
-    management_events_path if admin_signed_in? && params[:return_to] == "admin"
+    return unless admin_signed_in? && params[:return_to] == "admin"
+
+    if params[:return_page] == "all"
+      all_management_events_path
+    else
+      management_events_path
+    end
   end
 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_15_055901) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_22_164540) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -52,6 +52,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_15_055901) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "daily_specials", force: :cascade do |t|
+    t.integer "day_of_week", null: false
+    t.string "title", null: false
+    t.text "description"
+    t.time "happy_hour_start"
+    t.time "happy_hour_end"
+    t.boolean "active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "events", force: :cascade do |t|

@@ -20,5 +20,9 @@ module Management
       @calendar_days = (calendar_start..calendar_end).to_a
       @events_by_date = @events.group_by(&:event_date)
     end
+
+    def all
+      @events = Event.order(event_date: :desc)
+    end
   end
 end

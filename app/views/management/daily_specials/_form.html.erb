@@ -1,0 +1,61 @@
+
+<%= form_with model: [:management, @daily_special], class: "mt-8 space-y-6" do |form| %>
+  <% if @daily_special.errors.any? %>
+    <div class="rounded-xl border border-red-500/40 bg-red-500/10 p-4 text-red-300">
+      <p class="font-bold">Please correct these errors:</p>
+      <ul class="mt-2 list-disc pl-5">
+        <% @daily_special.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :day_of_week, "Day of the Week", class: "mb-2 block font-bold" %>
+    <%= form.select :day_of_week,
+        DailySpecial.day_of_weeks.keys.map { |day| [day.titleize, day] },
+        { prompt: "Select a day" },
+        required: true,
+        class: "w-full rounded-lg border border-white/10 bg-pecs-black px-4 py-3 text-white focus:border-pecs-green focus:outline-none" %>
+  </div>
+
+  <div>
+    <%= form.label :title, "Special Title", class: "mb-2 block font-bold" %>
+    <%= form.text_field :title, required: true, placeholder: "e.g. Taco Tuesday",
+        class: "w-full rounded-lg border border-white/10 bg-pecs-black px-4 py-3 text-white focus:border-pecs-green focus:outline-none" %>
+  </div>
+
+  <div>
+    <%= form.label :description, class: "mb-2 block font-bold" %>
+    <%= form.text_area :description, rows: 4, placeholder: "Describe the special...",
+        class: "w-full rounded-lg border border-white/10 bg-pecs-black px-4 py-3 text-white focus:border-pecs-green focus:outline-none" %>
+  </div>
+
+  <div class="grid gap-6 sm:grid-cols-2">
+    <div>
+      <%= form.label :happy_hour_start, "Happy Hour Starts", class: "mb-2 block font-bold" %>
+      <%= form.time_field :happy_hour_start,
+          class: "w-full rounded-lg border border-white/10 bg-pecs-black px-4 py-3 text-white focus:border-pecs-green focus:outline-none" %>
+    </div>
+
+    <div>
+      <%= form.label :happy_hour_end, "Happy Hour Ends", class: "mb-2 block font-bold" %>
+      <%= form.time_field :happy_hour_end,
+          class: "w-full rounded-lg border border-white/10 bg-pecs-black px-4 py-3 text-white focus:border-pecs-green focus:outline-none" %>
+    </div>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <%= form.check_box :active, class: "h-5 w-5 accent-pecs-green" %>
+    <%= form.label :active, "Special is active", class: "font-bold" %>
+  </div>
+
+  <div class="flex flex-wrap gap-3">
+    <%= form.submit(@daily_special.persisted? ? "Save Changes" : "Create Special",
+        class: "rounded-full bg-pecs-green px-8 py-4 font-bold text-pecs-black transition hover:bg-white") %>
+
+    <%= link_to "Cancel", management_daily_specials_path,
+        class: "rounded-full border border-white/20 px-8 py-4 font-bold transition hover:border-pecs-green hover:text-pecs-green" %>
+  </div>
+<% end %>

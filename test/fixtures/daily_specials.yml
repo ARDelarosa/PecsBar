@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  day_of_week: 1
+  title: MyString
+  description: MyText
+  happy_hour_start: 2026-10-22 09:45:40
+  happy_hour_end: 2026-10-22 09:45:40
+  active: false
+
+two:
+  day_of_week: 1
+  title: MyString
+  description: MyText
+  happy_hour_start: 2026-10-22 09:45:40
+  happy_hour_end: 2026-10-22 09:45:40
+  active: false

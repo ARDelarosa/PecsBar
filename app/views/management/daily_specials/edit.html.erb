@@ -1,0 +1,18 @@
+<div class="min-h-screen bg-pecs-black px-4 py-10 text-white sm:px-8">
+  <div class="mx-auto max-w-3xl">
+    <%= link_to "← Daily Specials", management_daily_specials_path,
+        class: "text-sm font-semibold text-pecs-light-gray transition hover:text-pecs-green" %>
+
+    <h1 class="mt-4 text-3xl font-black sm:text-4xl">
+      Edit <span class="text-pecs-green">Daily Special</span>
+    </h1>
+
+    <p class="mt-2 text-pecs-light-gray">
+      Update the special and happy-hour details.
+    </p>
+
+    <div class="mt-8 rounded-2xl border border-pecs-green/25 bg-pecs-gray p-6 sm:p-8">
+      <%= render "form" %>
+    </div>
+  </div>
+</div>

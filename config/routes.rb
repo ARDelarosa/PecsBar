@@ -9,6 +9,13 @@ Rails.application.routes.draw do
 
   namespace :management, path: "admin" do
     root "dashboard#index"
-    resources :events, only: [:index]
+
+    resources :events, only: [:index] do
+      collection do
+        get :all
+      end
+    end
+
+    resources :daily_specials, except: [:show, :destroy]
   end
 end

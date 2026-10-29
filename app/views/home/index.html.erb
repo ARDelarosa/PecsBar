@@ -81,23 +81,72 @@
           </div>
 
           <!-- Today's Special -->
-          <div class="rounded-2xl border border-white/10 bg-pecs-black p-8">
-            <p class="text-sm font-bold uppercase tracking-widest text-pecs-green">
-              Today's Special
-            </p>
+          <section class="bg-pecs-black px-4 py-16 text-white sm:px-8">
+            <div class="mx-auto max-w-6xl">
 
-            <h3 class="mt-2 text-2xl font-black text-white">
-              Happy Hour
-            </h3>
+              <div class="mb-8 text-center">
+                <p class="text-sm font-black uppercase tracking-[0.3em] text-pecs-green">
+                  What's Happening Today
+                </p>
 
-            <p class="mt-4 text-xl font-bold text-white">
-              Great drinks. Great prices.
-            </p>
+                <h2 class="mt-3 text-3xl font-black sm:text-4xl">
+                  Today's <span class="text-pecs-green">Special</span>
+                </h2>
 
-            <p class="mt-3 text-pecs-light-gray">
-              Check back for today's specials and bar happenings.
-            </p>
-          </div>
+                <p class="mt-3 text-pecs-light-gray">
+                  <%= Date.current.strftime("%A, %B %-d") %>
+                </p>
+              </div>
+
+              <% if @daily_special.present? %>
+                <div class="mx-auto max-w-3xl overflow-hidden rounded-2xl border border-pecs-green/40 bg-pecs-gray shadow-lg shadow-pecs-green/5">
+
+                  <div class="border-b border-pecs-green/20 bg-pecs-green/10 px-6 py-5 text-center">
+                    <span class="text-3xl">🍻</span>
+
+                    <h3 class="mt-3 text-2xl font-black sm:text-3xl">
+                      <%= @daily_special.title %>
+                    </h3>
+                  </div>
+
+                  <div class="p-6 text-center sm:p-8">
+                    <% if @daily_special.description.present? %>
+                      <p class="whitespace-pre-line leading-relaxed text-pecs-light-gray">
+                        <%= @daily_special.description %>
+                      </p>
+                    <% end %>
+
+                    <% if @daily_special.happy_hour_start.present? && @daily_special.happy_hour_end.present? %>
+                      <div class="mt-6 rounded-xl border border-pecs-green/20 bg-pecs-black p-5">
+                        <p class="text-sm font-black uppercase tracking-widest text-pecs-green">
+                          Happy Hour
+                        </p>
+
+                        <p class="mt-2 text-xl font-extrabold">
+                          <%= @daily_special.happy_hour_start.strftime("%-I:%M %p") %>
+                          –
+                          <%= @daily_special.happy_hour_end.strftime("%-I:%M %p") %>
+                        </p>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              <% else %>
+                <div class="mx-auto max-w-3xl rounded-2xl border border-white/10 bg-pecs-gray p-8 text-center">
+                  <p class="text-3xl">🍺</p>
+
+                  <h3 class="mt-3 text-xl font-bold">
+                    Stay tuned for today's specials!
+                  </h3>
+
+                  <p class="mt-2 text-pecs-light-gray">
+                    Check back soon for the latest drinks and happy-hour deals at Pecs Bar.
+                  </p>
+                </div>
+              <% end %>
+
+            </div>
+          </section>
 
           <!-- Upcoming Event -->
           <div class="rounded-2xl border border-white/10 bg-pecs-black p-8">

@@ -1,0 +1,110 @@
+
+<div class="min-h-screen bg-pecs-black px-4 py-10 text-white sm:px-8 lg:px-12">
+  <div class="mx-auto max-w-7xl">
+
+    <header class="flex flex-col gap-5 border-b border-pecs-green/30 pb-8 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <%= link_to "← Admin Dashboard", management_root_path,
+            class: "text-sm font-semibold text-pecs-light-gray transition hover:text-pecs-green" %>
+
+        <h1 class="mt-4 text-3xl font-black sm:text-4xl">
+          Daily <span class="text-pecs-green">Specials</span>
+        </h1>
+
+        <p class="mt-2 text-pecs-light-gray">
+          Manage the daily drink specials and happy-hour schedule.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap gap-3">
+        <%= link_to "← Admin Calendar", management_events_path,
+            class: "rounded-full border border-white/20 px-5 py-3 text-sm font-bold transition hover:border-pecs-green hover:text-pecs-green" %>
+
+        <%= link_to "+ Add Special", new_management_daily_special_path,
+            class: "rounded-full bg-pecs-green px-5 py-3 text-sm font-black text-pecs-black transition hover:bg-white" %>
+      </div>
+    </header>
+
+    <div class="mt-8 rounded-xl border border-pecs-green/20 bg-pecs-gray p-5">
+      <p class="text-sm font-semibold text-pecs-light-gray">Scheduled Specials</p>
+      <p class="mt-1 text-3xl font-black text-pecs-green">
+        <%= @daily_specials.count %>
+        <span class="text-base font-medium text-pecs-light-gray">of 7 possible days</span>
+      </p>
+    </div>
+
+    <section class="mt-8 overflow-hidden rounded-2xl border border-white/10 bg-pecs-gray">
+      <% if @daily_specials.any? %>
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[650px] text-left">
+            <thead class="bg-pecs-black text-xs uppercase tracking-wider text-pecs-light-gray">
+              <tr>
+                <th class="px-6 py-4">Day</th>
+                <th class="px-6 py-4">Special</th>
+                <th class="px-6 py-4">Happy Hour</th>
+                <th class="px-6 py-4">Status</th>
+                <th class="px-6 py-4 text-right">Actions</th>
+              </tr>
+            </thead>
+
+            <tbody class="divide-y divide-white/10">
+              <% @daily_specials.each do |special| %>
+                <tr class="transition hover:bg-pecs-black/40">
+                  <td class="px-6 py-5 font-bold">
+                    <%= special.day_of_week.titleize %>
+                  </td>
+
+                  <td class="px-6 py-5">
+                    <p class="font-bold"><%= special.title %></p>
+                    <p class="mt-1 text-sm text-pecs-light-gray">
+                      <%= special.description.presence || "No description yet" %>
+                    </p>
+                  </td>
+
+                  <td class="whitespace-nowrap px-6 py-5 text-sm text-pecs-light-gray">
+                    <% if special.happy_hour_start && special.happy_hour_end %>
+                      <%= special.happy_hour_start.strftime("%-I:%M %p") %>
+                      –
+                      <%= special.happy_hour_end.strftime("%-I:%M %p") %>
+                    <% else %>
+                      Not set
+                    <% end %>
+                  </td>
+
+                  <td class="px-6 py-5">
+                    <% if special.active? %>
+                      <span class="rounded-full bg-pecs-green/10 px-3 py-1 text-xs font-bold text-pecs-green">
+                        Active
+                      </span>
+                    <% else %>
+                      <span class="rounded-full bg-white/10 px-3 py-1 text-xs font-bold text-pecs-light-gray">
+                        Inactive
+                      </span>
+                    <% end %>
+                  </td>
+                  <td class="px-6 py-5 text-right">
+                    <%= link_to "Edit", edit_management_daily_special_path(special),
+                        class: "rounded-full border border-pecs-green/40 px-4 py-2 text-sm font-bold text-pecs-green transition hover:bg-pecs-green hover:text-pecs-black" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% else %>
+        <div class="p-12 text-center">
+          <p class="text-4xl">🍻</p>
+          <h2 class="mt-4 text-xl font-bold">No daily specials yet</h2>
+          <p class="mt-2 text-pecs-light-gray">
+            Your daily specials will appear here after you add them.
+          </p>
+        </div>
+      <% end %>
+    </section>
+
+    <footer class="mt-12 border-t border-white/10 pt-6 text-center text-sm text-pecs-light-gray">
+      Pecs Bar Admin Portal
+    </footer>
+
+  </div>
+</div>

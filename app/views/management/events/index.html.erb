@@ -18,7 +18,7 @@
       </div>
 
       <div class="flex flex-wrap gap-3">
-        <%= link_to "All Events", management_events_path,
+        <%= link_to "All Events", all_management_events_path,
             class: "rounded-full border border-white/20 px-5 py-3 text-sm font-bold transition hover:border-pecs-green hover:text-pecs-green" %>
 
         <%= link_to "+ Create Event", new_event_path(return_to: "admin"),
@@ -80,7 +80,7 @@
       <div class="mb-5 flex flex-wrap items-center justify-between gap-3">
         <h2 class="text-2xl font-black">Upcoming Events</h2>
 
-        <%= link_to "Manage All Events →", management_events_path,
+        <%= link_to "Manage All Events →", all_management_events_path,
             class: "text-sm font-bold text-pecs-green transition hover:underline" %>
       </div>
 
