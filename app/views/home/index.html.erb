@@ -115,20 +115,6 @@
                         <%= @daily_special.description %>
                       </p>
                     <% end %>
-
-                    <% if @daily_special.happy_hour_start.present? && @daily_special.happy_hour_end.present? %>
-                      <div class="mt-6 rounded-xl border border-pecs-green/20 bg-pecs-black p-5">
-                        <p class="text-sm font-black uppercase tracking-widest text-pecs-green">
-                          Happy Hour
-                        </p>
-
-                        <p class="mt-2 text-xl font-extrabold">
-                          <%= @daily_special.happy_hour_start.strftime("%-I:%M %p") %>
-                          –
-                          <%= @daily_special.happy_hour_end.strftime("%-I:%M %p") %>
-                        </p>
-                      </div>
-                    <% end %>
                   </div>
                 </div>
               <% else %>
@@ -144,7 +130,27 @@
                   </p>
                 </div>
               <% end %>
+            </div>
+          </section>
 
+          <!-- Happy Hour Section -->
+          <section class="bg-pecs-black px-4 py-10 text-white sm:px-8">
+            <div class="mx-auto max-w-3xl rounded-2xl border border-pecs-green/40 bg-pecs-gray p-6 text-center sm:p-8">
+              <p class="text-sm font-black uppercase tracking-[0.3em] text-pecs-green">
+                Monday – Friday
+              </p>
+
+              <h2 class="mt-3 text-3xl font-black sm:text-4xl">
+                Happy <span class="text-pecs-green">Hour</span>
+              </h2>
+
+              <p class="mt-4 text-2xl font-extrabold">
+                12:00 PM – 7:00 PM
+              </p>
+
+              <p class="mt-3 text-pecs-light-gray">
+                Stop by Pecs Bar for weekday happy hour!
+              </p>
             </div>
           </section>
 

@@ -41,7 +41,6 @@
               <tr>
                 <th class="px-6 py-4">Day</th>
                 <th class="px-6 py-4">Special</th>
-                <th class="px-6 py-4">Happy Hour</th>
                 <th class="px-6 py-4">Status</th>
                 <th class="px-6 py-4 text-right">Actions</th>
               </tr>
@@ -59,16 +58,6 @@
                     <p class="mt-1 text-sm text-pecs-light-gray">
                       <%= special.description.presence || "No description yet" %>
                     </p>
-                  </td>
-
-                  <td class="whitespace-nowrap px-6 py-5 text-sm text-pecs-light-gray">
-                    <% if special.happy_hour_start && special.happy_hour_end %>
-                      <%= special.happy_hour_start.strftime("%-I:%M %p") %>
-                      –
-                      <%= special.happy_hour_end.strftime("%-I:%M %p") %>
-                    <% else %>
-                      Not set
-                    <% end %>
                   </td>
 
                   <td class="px-6 py-5">
