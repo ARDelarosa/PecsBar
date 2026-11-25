@@ -1,7 +1,7 @@
 module Management
   class Management::DailySpecialsController < ApplicationController
     before_action :authenticate_admin!
-    before_action :set_daily_special, only: [:edit, :update]
+    before_action :set_daily_special, only: [:edit, :update, :toggle]
 
     def index
       @daily_specials = DailySpecial.order(:day_of_week)
@@ -32,6 +32,13 @@ module Management
       else
         render :edit, status: :unprocessable_entity
       end
+    end
+
+    def toggle
+      @daily_special.update(acitve: !@daily_special.active?)
+
+      redirect_to_management_daily_specials_path,
+        notice: "Daily Special updated successfully."
     end
 
     private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_22_164540) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_02_184128) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -63,6 +63,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_22_164540) do
     t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["day_of_week"], name: "index_daily_specials_on_day_of_week", unique: true
   end
 
   create_table "events", force: :cascade do |t|

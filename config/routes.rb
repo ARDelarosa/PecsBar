@@ -16,6 +16,11 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :daily_specials, except: [:show, :destroy]
+    resources :daily_specials, except: [:show, :destroy] do
+      member do
+        patch :toggle
+      end
+    end
+    
   end
 end
